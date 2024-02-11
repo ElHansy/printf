@@ -19,7 +19,6 @@
 
 /**
  * struct format_options - Structure to store format options
- *
  * @is_unsigned: Flag indicating if the value is unsigned
  * @use_plus_flag: Flag to specify the plus_flag
  * @use_space_flag: Flag to specify the space_flag
@@ -47,50 +46,49 @@ typedef struct format_options
 
 /**
  * struct format_specifier - Structure representing a format specifier
- *
  * @specifier: Format token
  * @function: Associated function
  */
 typedef struct format_specifier
 {
 	char *specifier;
-	int (*function)(va_list, format_options_t *);
+	int (*function)(va_list args, format_options_t *);
 } format_specifier_t;
 
 /* Function prototypes */
-void initialize_options(format_options_t *options, va_list ap);
-char *get_width(char *s, format_options_t *options, va_list ap);
+void initialize_options(format_options_t *options, va_list args);
+char *get_width(char *s, format_options_t *options, va_list args);
 int get_flag(char *s, format_options_t *options);
 int get_modifier(char *s, format_options_t *options);
-char *get_precision_field(char *p, format_options_t *options, va_list ap);
+char *get_precision_field(char *p, format_options_t *options, va_list args);
 int is_digit(int c);
 int string_length(char *s);
 char *convert_to_string(long int num, int base, int flags,
 format_options_t *options);
 
-int (*get_format_specifier(char *s))(va_list ap, format_options_t *options);
-int get_print_function(char *s, va_list ap, format_options_t *options);
+int (*get_format_specifier(char *s))(va_list args, format_options_t *options);
+int get_print_function(char *s, va_list args, format_options_t *options);
 
 /* Printing functions */
-int print_char(va_list ap, format_options_t *options);
-int print_integer(va_list ap, format_options_t *options);
-int print_unsigned_integer(va_list ap, format_options_t *options);
-int print_memory_address(va_list ap, format_options_t *options);
-int print_hexadecimal(va_list ap, format_options_t *options);
-int print_HEXadecimal(va_list ap, format_options_t *options);
-int print_binary_number(va_list ap, format_options_t *options);
-int print_octal_number(va_list ap, format_options_t *options);
-int print_text(va_list ap, format_options_t *options);
-int print_percent(va_list ap, format_options_t *options);
-int print_custom_string(va_list ap, format_options_t *options);
+int print_char(va_list args, format_options_t *options);
+int print_integer(va_list args, format_options_t *options);
+int print_unsigned_integer(va_list args, format_options_t *options);
+int print_memory_address(va_list args, format_options_t *options);
+int print_hexadecimal(va_list args, format_options_t *options);
+int print_HEXadecimal(va_list args, format_options_t *options);
+int print_binary_number(va_list args, format_options_t *options);
+int print_octal_number(va_list args, format_options_t *options);
+int print_text(va_list args, format_options_t *options);
+int print_percent(va_list args, format_options_t *options);
+int print_custom_string(va_list args, format_options_t *options);
 
 /* Miscellaneous functions */
 int my_printf(const char *format, ...);
 int put_string(char *str);
 int put_char(int c);
 int print_range(char *start, char *stop, char *except);
-int print_reversed(va_list ap, format_options_t *options);
-int print_rot13_encoded(va_list ap, format_options_t *options);
+int print_reversed(va_list args, format_options_t *options);
+int print_rot13_encoded(va_list args, format_options_t *options);
 int print_formatted_number(char *str, format_options_t *options);
 int print_right_shifted_number(char *str, format_options_t *options);
 int print_left_shifted_number(char *str, format_options_t *options);

@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _printf - prints anything
+ * _printf - prints formatted output
  * @format: the format string
  *
  * Return: number of bytes printed
@@ -9,11 +9,11 @@
 int _printf(const char *format, ...)
 {
 	int sum = 0;
-	va_list my_args;
+	va_list args;
 	char *p, *start;
 	format_options_t fo = DEFAULT_FORMAT_OPTIONS;
 
-	va_start(my_args, format);
+	va_start(args, format);
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (p = (char *)format; *p; p++)
 	{
-		initialize_options(&fo, my_args);
+		initialize_options(&fo, args);
 		if (*p != '%')
 		{
 			sum += put_char(*p);
@@ -29,21 +29,19 @@ int _printf(const char *format, ...)
 		}
 		start = p;
 		p++;
-		while (get_flag(p, &fo)) /* while char at p is flag char */
-		{
-			p++; /* next char */
-		}
-		p = get_width(p, &fo, my_args);
-		p = get_precision_field(p, &fo, my_args);
+		while (get_flag(p, &fo))
+			p++;
+		p = get_width(p, &fo, args);
+		p = get_precision_field(p, &fo, args);
 		if (get_modifier(p, &fo))
 			p++;
 		if (!get_format_specifier(p))
 			sum += print_range(start, p, NULL);
 		else
-			sum += get_print_function(p, my_args, &fo);
+			sum += get_print_function(p, args, &fo);
 	}
 	put_char(BUFFER_FLUSH);
-	va_end(my_args);
+	va_end(args);
 	return (sum);
 }
 
