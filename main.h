@@ -52,7 +52,7 @@ typedef struct format_specifier
 	int (*function)(va_list args, format_options_t *);
 } format_specifier_t;
 
-/* Function prototypes */
+/* Supportive_Functions */
 void initialize_options(format_options_t *options, va_list args);
 char *get_width(char *s, format_options_t *options, va_list args);
 int get_flag(char *s, format_options_t *options);
