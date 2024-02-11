@@ -52,7 +52,7 @@ typedef struct format_specifier
 	int (*function)(va_list args, format_options_t *);
 } format_specifier_t;
 
-/* Supportive_Functions */
+/* Supportive_Functions Prototypes */
 void initialize_options(format_options_t *options, va_list args);
 char *get_width(char *s, format_options_t *options, va_list args);
 int get_flag(char *s, format_options_t *options);
@@ -65,7 +65,8 @@ char *convert_to_string(long int num, int base, int flags,
 int (*get_format_specifier(char *s))(va_list args, format_options_t *options);
 int get_print_function(char *s, va_list args, format_options_t *options);
 
-/* Printing functions */
+/* Printing_Functions Prototypes */
+int _printf(const char *format, ...);
 int print_char(va_list args, format_options_t *options);
 int print_integer(va_list args, format_options_t *options);
 int print_unsigned_integer(va_list args, format_options_t *options);
@@ -77,9 +78,6 @@ int print_octal_number(va_list args, format_options_t *options);
 int print_text(va_list args, format_options_t *options);
 int print_percent(va_list args, format_options_t *options);
 int print_custom_string(va_list args, format_options_t *options);
-
-/* Miscellaneous functions */
-int my_printf(const char *format, ...);
 int put_string(char *str);
 int put_char(int c);
 int print_range(char *start, char *stop, char *except);
