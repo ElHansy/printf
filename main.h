@@ -9,11 +9,8 @@
 
 #define OUTPUT_BUFFER_SIZE 1024
 #define BUFFER_FLUSH -1
-
 #define NULL_STRING "(null)"
-
 #define DEFAULT_FORMAT_OPTIONS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 
@@ -32,16 +29,16 @@
  */
 typedef struct format_options
 {
-	unsigned int is_unsigned      : 1;
-	unsigned int use_plus_flag    : 1;
-	unsigned int use_space_flag   : 1;
-	unsigned int use_hashtag_flag : 1;
-	unsigned int use_zero_flag    : 1;
-	unsigned int use_minus_flag   : 1;
+	unsigned int is_unsigned;
+	unsigned int use_plus_flag;
+	unsigned int use_space_flag;
+	unsigned int use_hashtag_flag;
+	unsigned int use_zero_flag;
+	unsigned int use_minus_flag;
 	unsigned int field_width;
 	unsigned int precision;
-	unsigned int use_h_modifier   : 1;
-	unsigned int use_l_modifier   : 2;
+	unsigned int use_h_modifier;
+	unsigned int use_l_modifier;
 } format_options_t;
 
 /**
@@ -64,8 +61,7 @@ char *get_precision_field(char *p, format_options_t *options, va_list args);
 int is_digit(int c);
 int string_length(char *s);
 char *convert_to_string(long int num, int base, int flags,
-format_options_t *options);
-
+		format_options_t *options);
 int (*get_format_specifier(char *s))(va_list args, format_options_t *options);
 int get_print_function(char *s, va_list args, format_options_t *options);
 
