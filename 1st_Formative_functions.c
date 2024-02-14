@@ -5,6 +5,7 @@
  * @options: format options structure
  * @args: variable argument list
  */
+
 void initialize_options(format_options_t *options, va_list args)
 {
 	*options = DEFAULT_FORMAT_OPTIONS;

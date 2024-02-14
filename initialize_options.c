@@ -1,4 +1,4 @@
-#include <main.h>
+#include "main.h"
 
 /**
  * initialize_options - Clears structure fields and resets buffer.
@@ -7,9 +7,10 @@
  *
  * Return: void.
  */
+
 void initialize_options(format_options_t *options, va_list args)
 {
-	options->is_unsigned int = 0;
+	options->is_unsigned = 0;
 	options->use_plus_flag = 0;
 	options->use_space_flag = 0;
 	options->use_hashtag_flag = 0;

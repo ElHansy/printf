@@ -27,6 +27,7 @@
  * @use_h_modifier: Flag to specify the h_modifier
  * @use_l_modifier: Flag to specify the l_modifier
  */
+
 typedef struct format_options
 {
 	unsigned int is_unsigned;
