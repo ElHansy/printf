@@ -1,18 +1,11 @@
-#ifndef _MY_PRINTF_H
-#define _MY_PRINTF_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
-
-#define OUTPUT_BUFFER_SIZE 1024
-#define BUFFER_FLUSH -1
-#define NULL_STRING "(null)"
-#define DEFAULT_FORMAT_OPTIONS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define CONVERT_LOWERCASE 1
-#define CONVERT_UNSIGNED 2
 
 /**
  * struct format_options - Structure to store format options
@@ -30,17 +23,26 @@
 
 typedef struct format_options
 {
-	unsigned int is_unsigned;
-	unsigned int use_plus_flag;
-	unsigned int use_space_flag;
-	unsigned int use_hashtag_flag;
-	unsigned int use_zero_flag;
-	unsigned int use_minus_flag;
-	unsigned int field_width;
-	unsigned int precision;
-	unsigned int use_h_modifier;
-	unsigned int use_l_modifier;
+        unsigned int is_unsigned;
+        unsigned int use_plus_flag;
+        unsigned int use_space_flag;
+        unsigned int use_hashtag_flag;
+        unsigned int use_zero_flag;
+        unsigned int use_minus_flag;
+        unsigned int field_width;
+        unsigned int precision;
+        unsigned int use_h_modifier;
+        unsigned int use_l_modifier;
 } format_options_t;
+
+#define DEFAULT_FORMAT_OPTIONS {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+#define OUTPUT_BUFFER_SIZE 1024
+#define BUFFER_FLUSH -1
+#define NULL_STRING "(null)"
+#define CONVERT_LOWERCASE 1
+#define CONVERT_UNSIGNED 2
+
 
 /**
  * struct format_specifier - Structure representing a format specifier

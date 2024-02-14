@@ -9,8 +9,7 @@
 void initialize_options(format_options_t *options, va_list args)
 {
 	*options = DEFAULT_FORMAT_OPTIONS;
-	options->field_width = va_arg(args, int);
-	options->precision = va_arg(args, int);
+	(void)args;
 }
 
 /**
