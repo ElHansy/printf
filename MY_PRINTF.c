@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * _printf - prints anything
+ * _printf - prints all input data
  * @format: the format string
- *
- * Return: number of bytes printed
+ * Return: number of bytes that printed on std output
  */
+
 int _printf(const char *format, ...)
 {
 	int sum = 0;
