@@ -8,11 +8,11 @@
  */
 int put_string(char *str)
 {
-	char *a = str;
+	char *first = str;
 
 	while (*str)
 		put_char(*str++);
-	return (str - a);
+	return (str - first);
 }
 
 /**

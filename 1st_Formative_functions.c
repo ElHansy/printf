@@ -2,34 +2,34 @@
 
 /**
  * initialize_options - initializes format options structure
- * @options: format options structure
+ * @fo: format options structure
  * @args: variable argument list
  */
 
-void initialize_options(format_options_t *options, va_list args)
+void initialize_options(format_options_t *fo, va_list my_args)
 {
-	*options = DEFAULT_FORMAT_OPTIONS;
-	(void)args;
+	*fo = DEFAULT_FORMAT_OPTIONS;
+	(void)my_args;
 }
 
 /**
  * get_width - extracts the field width from the format string
  * @s: format string
- * @options: format options structure
+ * @fo: format options structure
  * @args: variable argument list
  *
  * Return: pointer to the next position in the format string
  */
-char *get_width(char *s, format_options_t *options, va_list args)
+char *get_width(char *s, format_options_t *fo, va_list my_args)
 {
 	if (*s == '*')
 	{
-		options->field_width = va_arg(args, int);
+		fo->field_width = va_arg(my_args, int);
 		return (s + 1);
 	}
 	else
 	{
-		options->field_width = strtol(s, &s, 10);
+		fo->field_width = strtol(s, &s, 10);
 		return (s);
 	}
 }
@@ -37,11 +37,11 @@ char *get_width(char *s, format_options_t *options, va_list args)
 /**
  * get_flag - extracts flags from the format string
  * @s: format string
- * @options: format options structure
+ * @fo: format options structure
  *
  * Return: 1 if a flag is found, 0 otherwise
  */
-int get_flag(char *s, format_options_t *options)
+int get_flag(char *s, format_options_t *fo)
 {
 	int flag = 0;
 
@@ -50,19 +50,19 @@ int get_flag(char *s, format_options_t *options)
 		switch (*s)
 		{
 			case '+':
-				options->use_plus_flag = 1;
+				fo->use_plus_flag = 1;
 				break;
 			case ' ':
-				options->use_space_flag = 1;
+				fo->use_space_flag = 1;
 				break;
 			case '#':
-				options->use_hashtag_flag = 1;
+				fo->use_hashtag_flag = 1;
 				break;
 			case '0':
-				options->use_zero_flag = 1;
+				fo->use_zero_flag = 1;
 				break;
 			case '-':
-				options->use_minus_flag = 1;
+				fo->use_minus_flag = 1;
 				break;
 		}
 		s++;
@@ -74,27 +74,27 @@ int get_flag(char *s, format_options_t *options)
 /**
  * get_modifier - extracts length modifiers from the format string
  * @s: format string
- * @options: format options structure
+ * @fo: format options structure
  *
  * Return: 1 if a modifier is found, 0 otherwise
  */
-int get_modifier(char *s, format_options_t *options)
+int get_modifier(char *s, format_options_t *fo)
 {
 	if (*s == 'h')
 	{
-		options->use_h_modifier = 1;
+		fo->use_h_modifier = 1;
 		if (*(s + 1) == 'h')
 		{
-			options->use_h_modifier = 2;
+			fo->use_h_modifier = 2;
 			return (1);
 		}
 	}
 	else if (*s == 'l')
 	{
-		options->use_l_modifier = 1;
+		fo->use_l_modifier = 1;
 		if (*(s + 1) == 'l')
 		{
-			options->use_l_modifier = 2;
+			fo->use_l_modifier = 2;
 			return (1);
 		}
 	}
@@ -104,24 +104,24 @@ int get_modifier(char *s, format_options_t *options)
 /**
  * get_precision_field - extracts precision field from the format string
  * @p: format string
- * @options: format options structure
+ * @fo: format options structure
  * @args: variable argument list
  *
  * Return: pointer to the next position in the format string
  */
-char *get_precision_field(char *p, format_options_t *options, va_list args)
+char *get_precision_field(char *p, format_options_t *fo, va_list my_args)
 {
 	if (*p == '.')
 	{
 		p++;
 		if (*p == '*')
 		{
-			options->precision = va_arg(args, int);
+			fo->precision = va_arg(my_args, int);
 			return (p + 1);
 		}
 		else
 		{
-			options->precision = strtol(p, &p, 10);
+			fo->precision = strtol(p, &p, 10);
 			return (p);
 		}
 	}

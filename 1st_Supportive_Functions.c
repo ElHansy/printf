@@ -2,24 +2,24 @@
 
 /**
  * init_opt - Initialize format options.
- * @pars: Parameters struct.
+ * @fo: format options struct.
  * @my_args: Variable argument list.
  *
  * Initializes the format options structure with default values.
  */
 
-void init_opt(params_t *pars, va_list my_args)
+void init_opt(format_options_t *fo, va_list my_args)
 {
-	pars->unsign = 0;
-	pars->plus_flag = 0;
-	pars->space_flag = 0;
-	pars->hashtag_flag = 0;
-	pars->zero_flag = 0;
-	pars->minus_flag = 0;
-	pars->width = 0;
-	pars->precision = UINT_MAX;
-	pars->h_modifier = 0;
-	pars->l_modifier = 0;
+	fo->unsign = 0;
+	fo->plus_flag = 0;
+	fo->space_flag = 0;
+	fo->hashtag_flag = 0;
+	fo->zero_flag = 0;
+	fo->minus_flag = 0;
+	fo->width = 0;
+	fo->precision = UINT_MAX;
+	fo->h_modifier = 0;
+	fo->l_modifier = 0;
 	(void)my_args;
 }
 

@@ -34,18 +34,18 @@ int string_length(char *s)
  * @num: number
  * @base: base
  * @flags: argument flags
- * @options: format options structure
+ * @fo: format options structure
  *
  * Return: string
  */
-char *convert(long int num, int base, int flags, format_options_t *options)
+char *convert(long int num, int base, int flags, format_options_t *fo)
 {
 	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
-	(void)options;
+	(void)fo;
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
@@ -69,44 +69,44 @@ char *convert(long int num, int base, int flags, format_options_t *options)
 /**
  * print_unsigned - prints unsigned integer numbers
  * @args: variable argument list
- * @options: format options structure
+ * @fo: format options structure
  *
  * Return: bytes printed
  */
-int print_unsigned(va_list args, format_options_t *options)
+int print_unsigned(va_list my_args, format_options_t *fo)
 {
 	unsigned long l;
 
-	if (options->use_l_modifier)
+	if (fo->use_l_modifier)
 		l = va_arg(args, unsigned long);
-	else if (options->use_h_modifier)
-		l = (unsigned short int)va_arg(args, unsigned int);
+	else if (fo->use_h_modifier)
+		l = (unsigned short int)va_arg(my_args, unsigned int);
 	else
-		l = (unsigned int)va_arg(args, unsigned int);
+		l = (unsigned int)va_arg(my_args, unsigned int);
 
-	options->is_unsigned int = 1;
+	fo->is_unsigned int = 1;
 	return (print_formatted_number(convert(l, 10,
-					CONVERT_UNSIGNED, options), options));
+					CONVERT_UNSIGNED, fo), fo));
 }
 
 /**
  * print_memory_address - prints memory address
  * @args: variable argument list
- * @options: format options structure
+ * @fo: format options structure
  *
  * Return: bytes printed
  */
-int print_memory_address(va_list args, format_options_t *options)
+int print_memory_address(va_list my_args, format_options_t *fo)
 {
-	unsigned long int n = va_arg(args, unsigned long int);
+	unsigned long int n = va_arg(my_args, unsigned long int);
 	char *str;
 
 	if (!n)
 		return (put_string("(nil)"));
 
-	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, options);
+	str = convert(n, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, fo);
 	*--str = 'x';
 	*--str = '0';
-	return (print_formatted_number(str, options));
+	return (print_formatted_number(str, fo));
 }
 

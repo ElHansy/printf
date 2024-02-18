@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	int sum = 0;
 	va_list my_args;
-	char *p, *start;
+	char *ptr, *start;
 	format_options_t fo = DEFAULT_FORMAT_OPTIONS;
 
 	va_start(my_args, format);
@@ -19,28 +19,28 @@ int _printf(const char *format, ...)
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	for (p = (char *)format; *p; p++)
+	for (ptr = (char *)format; *ptr; ptr++)
 	{
-		initialize_options(&fo, my_args);
-		if (*p != '%')
+		init_opt(&fo, my_args);
+		if (*ptr != '%')
 		{
-			sum += put_char(*p);
+			sum += put_char(*ptr);
 			continue;
 		}
-		start = p;
-		p++;
-		while (get_flag(p, &fo))
+		start = ptr;
+		ptr++;
+		while (get_flag(ptr, &fo))
 		{
-			p++;
+			ptr++;
 		}
-		p = get_width(p, &fo, my_args);
-		p = get_precision_field(p, &fo, my_args);
-		if (get_modifier(p, &fo))
-			p++;
-		if (!get_format_specifier(p))
-			sum += print_range(start, p, NULL);
+		ptr = get_width(ptr, &fo, my_args);
+		ptr = get_precision_field(ptr, &fo, my_args);
+		if (get_modifier(ptr, &fo))
+			ptr++;
+		if (!get_format_specifier(ptr))
+			sum += print_range(start, ptr, NULL);
 		else
-			sum += get_print_function(p, my_args, &fo);
+			sum += get_print_function(ptr, my_args, &fo);
 	}
 	put_char(BUFFER_FLUSH);
 	va_end(my_args);
