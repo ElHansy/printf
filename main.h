@@ -10,27 +10,24 @@
 #define OUT_BUFFER_SIZE 1024
 #define BUFFER_FLUSH -1
 #define NULL_STRING "(null)"
-#define opt_init
-{
-	0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-}
+#define OPT_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define CONV_LOWER 1
 #define CONV_UNSIGN 2
 
 /**
- *struct fmt_opt - Format options
- *@u: Unsigned flag
- *@plus: Plus
- *@space: Space
- *@hash: Hashtag
- *@zero: Zero
- *@minus: Minus
+ * struct fmt_opt - Format options
+ * @u: Unsigned flag
+ * @plus: Plus
+ * @space: Space
+ * @hash: Hashtag
+ * @zero: Zero
+ * @minus: Minus
  *
- *@w: Width
- *@preci: Precision
+ * @w: Width
+ * @preci: Precision
  *
- *@H: H modifier
- *@L: L modifier
+ * @H: H modifier
+ * @L: L modifier
  *
  */
 
