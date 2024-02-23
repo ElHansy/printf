@@ -6,7 +6,7 @@
  * Return: count number of bytes printed
  */
 
-int(*get_speci(char *s))(va_list args, fmt_opt_t *opt);
+int(*get_speci(char *s))(va_list args, fmt_opt_t *opt)
 {
 	specifier_t arr_speci[] = {
 		{"c", _printing_char},
