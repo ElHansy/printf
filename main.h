@@ -63,7 +63,7 @@ typedef struct Speci
 	int (*f)(va_list, fmt_opt_t *);
 } Speci;
 
-/*c_basic_functions.c module */
+/* basic_functions.c module */
 int c_puts(char *str);
 int c_putchar(int c);
 int isDigit(int c);
