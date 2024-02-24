@@ -2,40 +2,40 @@
 
 /**
  * conv - converter function from int to null terminated string
- * @n: number
+ * @number: number
  * @base: base
  * @flags: argument flags
  * @opt: paramater options
  * Return: string
  */
 
-char *conv(long int n, int base, int flags, fmt_opt_t *opt);
+char *conv(long int number, int base, int flags, fmt_opt_t *opt)
 {
 	static char *arr;
 	static char Buff[50];
 	char sign = 0;
-	char *ptr;
-	unsigned long n = num;
+	char *p;
+	unsigned long i = number;
 	(void)opt;
 
-	if (!(flags & CONV_UNSIGN) && num < 0)
+	if (!(flags & CONV_UNSIGN) && number < 0)
 	{
-		n = -num;
+		i = -number;
 		sign = '-';
 
 	}
 	arr = flags & CONV_LOWER ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &Buff[49];
-	*ptr = '\0';
+	p = &Buff[49];
+	*p = '\0';
 
 	do	{
-		*--ptr = arr[n % base];
-		n /= base;
-	} while (n != 0);
+		*--p = arr[i % base];
+		i /= base;
+	} while (i != 0);
 
 	if (sign)
-		*--ptr = sign;
-	return (ptr);
+		*--p = sign;
+	return (p);
 }
 
 
@@ -96,7 +96,7 @@ int _printing_num_Rshift(char *str, fmt_opt_t *opt)
 	if (opt->plus && !neg2 && pad_char == '0' && !opt->u)
 		n += c_putchar('+');
 	else if (!opt->plus && opt->space && !neg2 &&
-		!opt->unsign && opt->zero)
+		!opt->u && opt->zero)
 		n += c_putchar(' ');
 	while (i++ < opt->w)
 		n += c_putchar(pad_char);
@@ -104,7 +104,7 @@ int _printing_num_Rshift(char *str, fmt_opt_t *opt)
 		n += c_putchar('-');
 	if (opt->plus && !neg2 && pad_char == ' ' && !opt->u)
 		n += c_putchar('+');
-	else if (!opt->plus_flag && opt->space && !neg2 &&
+	else if (!opt->plus && opt->space && !neg2 &&
 		!opt->u && !opt->zero)
 		n += c_putchar(' ');
 	n += c_puts(str);
@@ -118,14 +118,14 @@ int _printing_num_Rshift(char *str, fmt_opt_t *opt)
  * Return: chars printed
  */
 
-int _printing_num_Lshift(char *str, fmt_opt_t *opt);
+int _printing_num_Lshift(char *str, fmt_opt_t *opt)
 {
 	unsigned int n = 0, neg, neg2, i = STRlen(str);
 	char pad_char = ' ';
 
 	if (opt->zero && !opt->minus)
 		pad_char = '0';
-	neg = neg2 = (!opt->unsign && *str == '-');
+	neg = neg2 = (!opt->u && *str == '-');
 	if (neg && i < opt->w && pad_char == '0' && !opt->minus)
 		str++;
 	else

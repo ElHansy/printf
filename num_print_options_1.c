@@ -8,6 +8,7 @@
  */
 
 int _printing_unsign(va_list args, fmt_opt_t *opt)
+
 {
 	unsigned long l;
 
@@ -94,7 +95,7 @@ int _printing_HEX(va_list args, fmt_opt_t *opt)
 int _printing_bin(va_list args, fmt_opt_t *opt)
 {
 	unsigned int n = va_arg(args, unsigned int);
-	char *str = conv(n, 2, CONVERT_UNSIGN, opt);
+	char *str = conv(n, 2, CONV_UNSIGN, opt);
 	int c = 0;
 
 	if (opt->hash && n)

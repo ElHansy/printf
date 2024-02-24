@@ -67,9 +67,9 @@ int _printing_string(va_list args, fmt_opt_t *opt)
 		case 1:
 			string = NULL_STRING;
 
-	j = pad = STRlen(string);
+	j = pad_counter = STRlen(string);
 	if (opt->preci < pad_counter)
-		j = pad = opt->preci;
+		j = pad_counter = opt->preci;
 
 	if (opt->minus)
 	{
