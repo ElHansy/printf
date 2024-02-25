@@ -22,7 +22,7 @@ int _printing_range(char *begin, char *stop, char *xpt)
 }
 
 /**
- * _printing_r - print string in reverse format
+ * _printing_r - print string in reverse
  * @args: string format
  * @opt: the parameters options
  * Return: count of bytes printed

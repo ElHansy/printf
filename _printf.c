@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
     int count = 0;
     char *p;
-    char *begin = NULL;
+    char *begin;
     va_list args;
     fmt_opt_t opt;
 
