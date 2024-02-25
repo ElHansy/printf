@@ -105,7 +105,7 @@ void init_opt(fmt_opt_t *opt, va_list args);
 /*specifier.c modoule */
 int(*get_speci(char *s))(va_list args, fmt_opt_t *opt);
 
-/*_prinf.c module */
+/*_printf.c module */
 int _printf(const char *format, ...);
 
 #endif
