@@ -8,13 +8,13 @@
 
 int _printf(const char *format, ...)
 {
-    int count = 0;
-    char *p;
-    char *begin;
-    va_list args;
-    fmt_opt_t opt;
-
-    va_start(args, format);
+	int count = 0;
+	char *p;
+	char *begin;
+	va_list args;
+	fmt_opt_t opt;
+	
+	va_start(args, format);
 
     if (!format || (format[0] == '%' && !format[1]))
         return (-1);
@@ -51,4 +51,3 @@ int _printf(const char *format, ...)
     va_end(args);
     return (count);
 }
-

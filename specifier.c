@@ -8,7 +8,7 @@
 
 int(*get_speci(char *s))(va_list args, fmt_opt_t *opt)
 {
-	Speci arr_speci[] = {
+	Speci_t specifier_array[] = {
 		{"c", _printing_char},
 		{"d", _printing_int},
 		{"i", _printing_int},
@@ -27,11 +27,11 @@ int(*get_speci(char *s))(va_list args, fmt_opt_t *opt)
 	};
 	int i = 0;
 
-	while (arr_speci[i].s)
+	while (specifier_array[i].sp)
 	{
-		if (*s == arr_speci[i].s[0])
+		if (*s == specifier_array[i].sp[0])
 		{
-			return (arr_speci[i].f);
+			return (specifier_array[i].f);
 		}
 		i++;
 	}

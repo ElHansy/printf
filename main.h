@@ -11,8 +11,8 @@
 #define BUFFER_FLUSH -1
 #define NULL_STRING "(null)"
 #define OPT_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define CONV_LOWER 1
-#define CONV_UNSIGN 2
+#define CONV_LOWER	1
+#define CONV_UNSIGN	2
 
 /**
  * struct fmt_opt - Format options
@@ -56,9 +56,9 @@ typedef struct fmt_opt
 
 typedef struct Speci
 {
-	char *s;
+	char *sp;
 	int (*f)(va_list, fmt_opt_t *);
-} Speci;
+} Speci_t;
 
 /* basic_functions.c module */
 int c_puts(char *str);
