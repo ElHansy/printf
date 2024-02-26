@@ -31,16 +31,15 @@ int _printing_range(char *begin, char *stop, char *xpt)
 int _printing_r(va_list args, fmt_opt_t *opt)
 {
 	int ln, count = 0;
-	char *str = va_arg(args, char *);
+	char *string = va_arg(args, char *);
 	(void)opt;
 
-	if (str)
+	if (string)
 	{
-		for (ln = 0; *str; str++)
-			ln++;
-		str--;
-		for (; ln > 0; ln--, str--)
-			count += c_putchar(*str);
+		for (ln = 0; string[ln]; ln++)
+			continue;
+		for (ln--; ln >= 0; ln--)
+			count += c_putchar(string[ln]);
 	}
 	return (count);
 }

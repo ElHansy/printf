@@ -10,9 +10,9 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	char *p;
-	char *begin;
+	char *begin = NULL;
 	va_list args;
-	fmt_opt_t opt;
+	fmt_opt_t opt = OPT_INIT;
 	
 	va_start(args, format);
 
@@ -23,14 +23,18 @@ int _printf(const char *format, ...)
 
     for (p = (char *)format; *p; p++)
     {
-        begin = (char *)p;
-        init_opt(&opt, args);
+	    init_opt(&opt, args);
 
-        if (*p != '%')
-        {
-            count += c_putchar(*p);
-            continue;
-        }
+        
+	    if (*p != '%')
+        
+	    {
+            
+		    count += c_putchar(*p);
+            
+		    continue;
+        
+	    }
 
         p++;
         while (get_f(p, &opt))
@@ -41,8 +45,7 @@ int _printf(const char *format, ...)
 
         if (get_m(p, &opt))
             p++;
-
-        if (!get_speci(p))
+	if (!get_speci(p))
             count += _printing_range(begin, p, opt.L || opt.H ? p - 1 : (char *)0);
 	else
             count += get_print_func(p, args, &opt);
