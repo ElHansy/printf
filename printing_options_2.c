@@ -16,7 +16,7 @@ int _printing_range(char *go, char *stop, char *xpt)
 	{
 		if (go != xpt)
 			count += c_putchar(*go);
-		go ++;
+		go++;
 	}
 	return (count);
 }
