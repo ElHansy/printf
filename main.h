@@ -50,7 +50,7 @@ typedef struct fmt_opt
 
 /**
  *struct Speci - Format specifier
- *@s: Format token
+ *@sp:i Format token
  *@f: Associated function
  */
 
@@ -74,7 +74,7 @@ int _printing_pcent(va_list args, fmt_opt_t *opt);
 int _printing_FMTspeci(va_list args, fmt_opt_t *opt);
 
 /*printing_options_2.c module */
-int _printing_range(char *start, char *stop, char *except);
+int _printing_range(char *go, char *stop, char *xpt);
 int _printing_r(va_list args, fmt_opt_t *opt);
 int _printing_R(va_list args, fmt_opt_t *opt);
 int _printing_addr(va_list args, fmt_opt_t *opt);
@@ -94,7 +94,7 @@ int _printing_bin(va_list args, fmt_opt_t *opt);
 int _printing_oct(va_list args, fmt_opt_t *opt);
 
 /*num_print_options_2.c module */
-char *conv(long int n, int base, int flags, fmt_opt_t *opt);
+char *conv(long int number, int base, int flags, fmt_opt_t *opt);
 int _printing_num(char *str, fmt_opt_t *opt);
 int _printing_num_Rshift(char *str, fmt_opt_t *opt);
 int _printing_num_Lshift(char *str, fmt_opt_t *opt);

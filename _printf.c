@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	char *p;
-	char *begin = NULL;
+	char *begin;
 	va_list args;
 	fmt_opt_t opt = OPT_INIT;
 
@@ -29,6 +29,7 @@ int _printf(const char *format, ...)
 			count += c_putchar(*p);
 			continue;
 		}
+		begin = p;
 		p++;
 
 		while (get_f(p, &opt))
@@ -39,7 +40,7 @@ int _printf(const char *format, ...)
 		if (get_m(p, &opt))
 			p++;
 		if (!get_speci(p))
-			count += _printing_range(begin, p, opt.L || opt.H ? p - 1 : (char *)0);
+			count += _printing_range(begin, p, opt.L || opt.H ? p - 1 : 0);
 		else
 			count += get_print_func(p, args, &opt);
 	}

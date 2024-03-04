@@ -17,10 +17,9 @@ int _printing_char(va_list args, fmt_opt_t *opt)
 	if (opt->minus)
 		count += c_putchar(character);
 
-	while (pad_counter < opt->w) /*print space pad after last char*/
+	while (pad_counter++ < opt->w) /*print space pad after last char*/
 	{
 		count += c_putchar(pad_char);
-		pad_counter++;
 	}
 
 	if (!opt->minus) /*if not true print char as it is*/
@@ -118,7 +117,7 @@ int _printing_FMTspeci(va_list args, fmt_opt_t *opt)
 	char *hex;
 	int count = 0;
 
-	if (!str)
+	if ((int)(!str))
 		return (c_puts(NULL_STRING));
 
 	for (; *str; str++)

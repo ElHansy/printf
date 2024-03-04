@@ -2,21 +2,21 @@
 
 /**
  * _printing_range - prints a range of chars from string beginning
- * @begin: starting point
+ * @go: starting point
  * @stop: stopping point
  * @xpt: except address
  * Return: count of bytes printed
  */
 
-int _printing_range(char *begin, char *stop, char *xpt)
+int _printing_range(char *go, char *stop, char *xpt)
 {
 	int count = 0;
 
-	while (begin <= stop)
+	while (go <= stop)
 	{
-		if (begin != xpt)
-			count += c_putchar(*begin);
-		begin++;
+		if (go != xpt)
+			count += c_putchar(*go);
+		go ++;
 	}
 	return (count);
 }
@@ -36,10 +36,11 @@ int _printing_r(va_list args, fmt_opt_t *opt)
 
 	if (string)
 	{
-		for (ln = 0; string[ln]; ln++)
-			continue;
-		for (ln--; ln >= 0; ln--)
-			count += c_putchar(string[ln]);
+		for (ln = 0; *string; string++)
+			ln++;
+		string--;
+		for (; ln > 0; ln--, string--)
+			count += c_putchar(*string);
 	}
 	return (count);
 }
